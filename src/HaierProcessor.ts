@@ -49,6 +49,14 @@ class HaierProcessor {
     await page.close();
     await this.browser.close();
 
+    const baseUrl = 'https://www.haier-europe.com';
+    images.forEach(image => image.uri = baseUrl + image.uri);
+    texts.forEach(text => {
+      if (text.image) {
+        text.image = baseUrl + text.image;
+      }
+    });
+
     return { images, texts, documents };
   }
 
